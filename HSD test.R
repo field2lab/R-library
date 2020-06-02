@@ -1,0 +1,11 @@
+library(foreign)
+library(agricolae)
+dat = read.csv("C:/Users/Administrator/Desktop/top 10.csv", header = TRUE)
+str(dat)
+a1 <- lm(Ton ~ POP.ID+ factor(Block),data=dat)
+anova(a1)
+a2=aov(Ton ~ POP.ID,data=dat)
+TukeyHSD(a2)
+a3=HSD.test(a2,"POP.ID",alpha = 0.1, group=TRUE)
+a4=LSD.test(a2,"POP.ID",alpha = 0.05, group=TRUE)
+
